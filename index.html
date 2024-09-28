@@ -6,6 +6,7 @@
     <title>Mapa con OpenStreetMap y Leaflet</title>
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div id="map"></div>
@@ -13,5 +14,11 @@
     <script src="/scripts/mapa.js"></script>
     <script src="/scripts/puertos.js"></script>
     <script src="/scripts/barcos.js"></script>
+    <div id="lista">
+        <h3>Barcos Cercanos</h3>
+        <ul class="list-group" id="lista-barcos"></ul>
+    </div>
 </body>
 </html>
+
+

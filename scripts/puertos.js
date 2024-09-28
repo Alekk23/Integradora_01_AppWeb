@@ -1,7 +1,7 @@
 var puertoIcono = L.icon({
     iconUrl: '/assets/anchor.png',
   
-    iconSize:     [35, 35], // size of the icon
+    iconSize:     [35, 35], 
   });
 
 var puertos = [
@@ -12,26 +12,51 @@ var puertos = [
     { lat: 35.7112276, lon: -0.7207653, name: 'Sidi' },
 ];
 
-// Crear marcadores para cada puerto y agregar eventos 'click'
+var barcosCercanos = [];
+
 puertos.forEach(function(puerto) {
     var marker = L.marker([puerto.lat, puerto.lon], {icon: puertoIcono}).addTo(map)
         .bindPopup(puerto.name);
     
-    // Añadir el evento 'click' al marcador
     marker.on('click', function() {
-        // Si ya hay un círculo dibujado, lo removemos
         if (circuloActivo) {
             map.removeLayer(circuloActivo);
         }
 
-        // Crear un círculo de 50 km alrededor del marcador seleccionado
         circuloActivo = L.circle([puerto.lat, puerto.lon], {
-            color: 'blue',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 50000 // radio en metros (50 km)
+            color: 'red',
+            fillOpacity: 0.25,
+            radius: 75000
         }).addTo(map);
+
+        var bounds = circuloActivo.getBounds();
+
+        barcosCercanos = [];
+
+        barcos.forEach(function(barco) {
+            var latlng = L.latLng(barco.lat, barco.lon);
+            if (bounds.contains(latlng)) {
+                barcosCercanos.push(barco.name);
+            }
+        });
+
+        var listaDiv = document.getElementById('lista-barcos');
+        listaDiv.innerHTML = '';
+
+        barcosCercanos.forEach(function(nombreBarco) {
+            var listItem = document.createElement('li');
+            listItem.classList.add('list-group-item');
+            listItem.textContent = nombreBarco;
+            listaDiv.appendChild(listItem);
+        });
     });
+});
+
+map.on('click', function() {
+    if (circuloActivo) {
+        map.removeLayer(circuloActivo);
+        circuloActivo = null; 
+    }
 });
 
 var circuloActivo = null;

@@ -1,6 +1,6 @@
 var barcoIcono = L.icon({
     iconUrl: '/assets/ship.png',
-    iconSize:     [20, 20], // size of the icon
+    iconSize:     [20, 20], 
   });
 var barcos = [
     { lat: 36.272148, lon: -4.449920, name: 'Barco 1' },

@@ -1,4 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh; 
+}
+
 #map {
-    height: 100vh;
-    width: 50%;
+    height: 100vh; 
+    width: 75%;
+}
+
+#lista {
+    display: flex;
+    flex-direction: column; /* Para que el h3 esté sobre la lista */
+    align-items: center; /* Centra el contenido dentro del contenedor */
+    width: 25%; /* Ajusta el ancho según tus necesidades */
+}
+
+#lista-barcos {
+    width: 75%;
+}
+
+h3 {
+    padding: 20px;
 }
