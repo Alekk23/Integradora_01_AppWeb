@@ -43,6 +43,10 @@ puertos.forEach(function(puerto) {
         var listaDiv = document.getElementById('lista-barcos');
         listaDiv.innerHTML = '';
 
+        var header = document.createElement('h3');
+        header.textContent = 'Barcos Cercanos';
+        listaDiv.appendChild(header);
+
         barcosCercanos.forEach(function(nombreBarco) {
             var listItem = document.createElement('li');
             listItem.classList.add('list-group-item');
