@@ -32,11 +32,11 @@ puertos.forEach(function(puerto) {
         var bounds = circuloActivo.getBounds();
 
         barcosCercanos = [];
-
+        
         barcos.forEach(function(barco) {
             var latlng = L.latLng(barco.lat, barco.lon);
             if (bounds.contains(latlng)) {
-                barcosCercanos.push(barco.name);
+                barcosCercanos.push({name: barco.name, owner: barco.owner, flag : barco.flag, folio: barco.folio, tipo: barco.tipo});
             }
         });
 
@@ -47,10 +47,26 @@ puertos.forEach(function(puerto) {
         header.textContent = 'Barcos Cercanos';
         listaDiv.appendChild(header);
 
-        barcosCercanos.forEach(function(nombreBarco) {
+        barcosCercanos.forEach(function(barcoCercano) {
             var listItem = document.createElement('li');
             listItem.classList.add('list-group-item');
-            listItem.textContent = nombreBarco;
+        
+            var flagImg = document.createElement('img');
+            flagImg.src = barcoCercano.flag;
+            flagImg.alt = 'Bandera de ' + barcoCercano.info;
+            flagImg.style.width = '30px'; 
+            flagImg.style.marginRight = '10px'; 
+
+            listItem.appendChild(flagImg);
+            listItem.appendChild(document.createTextNode(barcoCercano.name));
+            listItem.appendChild(document.createElement('br'));
+            listItem.appendChild(document.createTextNode('Tipo: ' +  barcoCercano.tipo));
+            listItem.appendChild(document.createElement('br'));
+            listItem.appendChild(document.createTextNode('Propietario: ' +  barcoCercano.owner));
+            listItem.appendChild(document.createElement('br'));
+            listItem.appendChild(document.createTextNode('No. de Documento: ' + barcoCercano.folio));
+
+
             listaDiv.appendChild(listItem);
         });
     });
