@@ -24,3 +24,9 @@ body {
 h3 {
     padding: 15px;
 }
+.list-group{
+    max-height: 100hv;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
